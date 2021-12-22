@@ -1,4 +1,5 @@
 # Directed Weighted Graph implementation in Python
+![Introduction](https://user-images.githubusercontent.com/90526270/147094128-6f8113fb-7cb2-4794-b24c-87477a0599c6.png)
 
 ## Introduction
 This project was created for OOP class, October 2021, in Ariel University. </br>
