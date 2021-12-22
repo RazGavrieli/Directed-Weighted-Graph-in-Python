@@ -10,7 +10,7 @@ Contains a DiGraph, and has more advanced functions for analzying a graph. </br>
 You can run Dijikstra's algorithm, run GUI, finding the center node and more..
 </br>
 </br>
-####### Read more about the project in the wiki tab
+###### Read more about the project in the wiki tab
 ## How to use
 Clone the project into your computer and run in the IDE of your choice. </br>
 Then, go to main.py and inside the `check` function write the commands of your choice. </br>
