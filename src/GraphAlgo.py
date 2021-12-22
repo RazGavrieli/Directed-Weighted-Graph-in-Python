@@ -4,10 +4,10 @@ from src.Interfaces import GraphInterface
 
 import json
 from typing import List
-import matplotlib.pyplot as plt
 from queue import PriorityQueue
 import itertools
 
+import matplotlib.pyplot as plt
 import matplotlib
 import matplotlib.backends.backend_agg as agg
 import pygame
@@ -120,9 +120,9 @@ class GraphAlgo(GraphAlgoInterface):
         D[id] = 0, id
 
         currNode = id
+
         pq = PriorityQueue()
         pq.put((0, currNode))
-
         while not pq.empty():
             (currWeight, currNode) = pq.get()
             self._Graph._nodes.get(currNode).tag = 1
@@ -489,6 +489,7 @@ class GraphAlgo(GraphAlgoInterface):
                         updated = True
 
                 if updated:
+                    plt.close(fig)
                     fig = self.drawGraph()
                     canvas = agg.FigureCanvasAgg(fig)
                     canvas.draw()
