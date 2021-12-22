@@ -48,8 +48,9 @@ class GraphAlgo(GraphAlgoInterface):
         @param file_name: The path to the json file
         @returns True if the loading was successful, False o.w.
         """
+        temp = self._Graph
         try:    # the following 7 lines are standard method of reading json file in python
-            temp = self._Graph
+
             self._Graph = DiGraph()
             with open(file_name, "r") as file:
                 data = json.load(file)
