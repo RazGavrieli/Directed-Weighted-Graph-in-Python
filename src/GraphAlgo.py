@@ -18,6 +18,10 @@ import easygui
 class GraphAlgo(GraphAlgoInterface):
 
     def __init__(self, g = None):
+        """
+        Init the graph, prepares the variables for the GUI and gives it a name
+        :param g:
+        """
         if g is None:
             self._Graph = DiGraph()
         else:
@@ -73,6 +77,12 @@ class GraphAlgo(GraphAlgoInterface):
             return False
 
     def save_to_json(self, file_name: str) -> bool:
+        """
+        saves the graph into a new json file.
+        The function WILL override any existing graph if the name is taken.
+        :param file_name:
+        :return:
+        """
         try:
             nodes = []
             edges = []
@@ -95,6 +105,14 @@ class GraphAlgo(GraphAlgoInterface):
             return False
 
     def dijkstra(self, id: int):
+        """
+        This function creates a dictionary 'D' which holds in tuples the distance for each node,
+        and it's parent node in the path. The key is the destinations node of that particular path.
+
+        This function is an direct implementation of Dijkstra's algorithm using Priority Queue.
+        :param source id:
+        :return: D
+        """
         D = {}
         for node in self._Graph._nodes.keys():
             D[node] = float('inf'), node
@@ -164,10 +182,12 @@ class GraphAlgo(GraphAlgoInterface):
     def TSP(self, node_lst: List[int]) -> (List[int], float):
         """
         Finds the shortest path that visits all the nodes in the list
+        If the amount of stops in node_lst is fewer then 6, we will calculate each permutation.
+        Else, (the amount of stops is greater then 5), we will use a greedy TSP algorithm.
         :param node_lst: A list of nodes id's
         :return: A list of the nodes id's in the path, and the overall distance
         """
-        if len(node_lst) < 6:   # do all permutations
+        if len(node_lst) < 6:   # then do all permutations
             currDict = {}
             for i in node_lst:
                 if i in self._Graph._nodes.keys():
@@ -175,11 +195,11 @@ class GraphAlgo(GraphAlgoInterface):
 
             minW = float('inf')
             minPermID = -1
-            allPerm = list(itertools.permutations(node_lst))    #O(n!) when n<=5 (therefore O(120))
+            allPerm = list(itertools.permutations(node_lst))    #O(n!) when n<=5 (therefore O(120)) n*dijikstra * n!
             for i in range(len(allPerm)):
                 currW = 0
                 for j in range(len(node_lst)-1):
-                    currW += self.shortest_path(allPerm[i][j], allPerm[i][j+1])[0]
+                    currW += currDict[allPerm[i][j]][allPerm[i][j+1]][0]
                 if currW < minW:
                     minW = currW
                     minPermID = i
@@ -200,6 +220,12 @@ class GraphAlgo(GraphAlgoInterface):
             return self.greedyTSP(node_lst)
 
     def greedyTSP(self, node_lst: List[int]) -> (List[int], float):     #O(n^2)
+        """
+        This greedyTSP algorithm is used when there are too many stops in the TSP query,
+        it does NOT return the correct answer every time. But the time-complexity is acceptable.
+        :param node_lst: list of stops.
+        :return: A list of the nodes id's in the path, and the overall distance
+        """
         currDict = {}
         list = []
         for i in node_lst:
@@ -253,6 +279,10 @@ class GraphAlgo(GraphAlgoInterface):
 
     def drawGraph(self): # https://www.southampton.ac.uk/~feeg1001/notebooks/Matplotlib.html
                          # http://www.pygame.org/wiki/MatplotlibPygame
+        """
+        This function calculate the matplotlib graph for the advanced GUI.
+        :return: The graph itself ready to be presented in pygame.
+        """
         fig, axes = plt.subplots(figsize=(7, 5))
         axes.set_title("Graph "+self.name+"", {'fontname': 'Courier New'}, fontsize=20)
 
@@ -287,6 +317,11 @@ class GraphAlgo(GraphAlgoInterface):
         return fig
 
     def plot_graph(self) -> None:
+        """
+        This is the function that manage the GUI.
+        First the user will be asked if he wants to use the advanced GUI (with buttons) or just
+        draw the graph using just matplotlib.
+        """
         GUI = easygui.boolbox("Do you want simple or advanced GUI?\n *advanced GUI is WIP and likely to crash when given wrong inputs\nbut do play with it :)", choices=("Advanced", "Simple"))
         if GUI:
             self.advancedGUI()
@@ -316,6 +351,10 @@ class GraphAlgo(GraphAlgoInterface):
                 plt.show()
 
     def advancedGUI(self)  -> None:
+        """
+        This function runs the advanced GUI.
+        Creates the buttons and update the matplotlib that is presented in pygame.
+        """
         matplotlib.use("Agg")
 
         fig = self.drawGraph()

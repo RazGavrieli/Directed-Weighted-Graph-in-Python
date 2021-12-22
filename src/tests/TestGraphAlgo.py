@@ -45,7 +45,7 @@ class TestGraphAlgo(TestCase):
         g.get_graph().add_edge(1, 4, 0.5)
         g.get_graph().add_edge(3, 5, 10)
 
-        self.assertEqual(11 ,g.shortest_path(3, 4)[0])
+        self.assertEqual(11, g.shortest_path(3, 4)[0])
 
     def test_tsp(self):
         g = GraphAlgo()
@@ -63,15 +63,6 @@ class TestGraphAlgo(TestCase):
         g.get_graph().add_edge(3, 5, 10)
 
         self.assertEqual(([0, 2, 3, 5, 1, 4], 21.0), g.TSP([0, 2, 3, 4]))
-
-        f = GraphAlgo()
-        for i in range(20):
-            f.get_graph().add_node(i)
-
-        for i in range(20):
-            for j in range(10):
-                if i != j:
-                    f.get_graph().add_edge(i, j, 1)
 
     def test_center_point(self):
         g = GraphAlgo()
