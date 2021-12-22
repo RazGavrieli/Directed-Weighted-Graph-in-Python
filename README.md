@@ -20,5 +20,4 @@ There are 4 examples (`check0-3`) in main.py for you to read and understand the 
 Note that depending on your IDE you might need to 'build' the project before running it. </br>
 
 ## Credits
-matpltlib, pygame, easygui(library based on tkinter for popup screen for inputs)</br>
-Raz Gavrieli, Eran David, Amit Melamed
+Libraries used: pygame, matplotlib, easygui
