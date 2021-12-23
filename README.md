@@ -15,7 +15,7 @@ You can run Dijikstra's algorithm, run GUI, finding the center node and more..
 ###### Read more about the project in the wiki tab
 https://github.com/RazGavrieli/Directed-Weighted-Graph-in-Python/wiki
 
-## How to use - READ THIS
+## How to use - READ THIS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 -Clone the project into your computer and run in the IDE of your choice. </br>
 -Go to each import at first lines of each file, and install the different libraries. At this step the IDE should offer you to install the relevant packages. 
 -Go to main.py and inside the `check()` function write the commands of your choice. </br>
