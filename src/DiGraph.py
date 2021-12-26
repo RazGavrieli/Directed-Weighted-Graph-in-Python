@@ -14,8 +14,20 @@ class DiGraph(GraphInterface):
         self._mc = 0
 
     def __repr__(self):
-        return "Nodes:\n "+str(self._nodes)+"\n\nEdges:\n "+str(self._edgesInto)
-
+        # return "Nodes:\n "+str(self._nodes)+"\n\nEdges:\n "+str(self._edgesInto)
+        STR = "Graph: |V|="+str(self.v_size())+", |E|="+str(self.e_size())+"\n"
+        for i in self._nodes.keys():
+            if self.all_out_edges_of_node(i) is None:
+                if self.all_in_edges_of_node(i) is None:
+                    STR += str(i) + ": |edges out|=" + str(0) + "  |edges in|=" + str(0) + ", "
+                else:
+                    STR += str(i) + ": |edges out|=" + str(0) + "  |edges in|=" + str(len(self.all_in_edges_of_node(i))) + ", "
+            else:
+                if self.all_in_edges_of_node(i) is None:
+                    STR += str(i) + ": |edges out|=" + str(len(self.all_out_edges_of_node(i))) + "  |edges in|=" + str(0) + ", "
+                else:
+                    STR += str(i) + ": |edges out|=" + str(len(self.all_out_edges_of_node(i))) + "  |edges in|=" + str(len(self.all_in_edges_of_node(i))) + ", "
+        return STR
     def v_size(self) -> int:
         """
         Returns the number of vertices in this graph

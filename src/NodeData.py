@@ -17,4 +17,4 @@ class NodeData:
 
 
     def __repr__(self):
-        return "Node ID:"+str(self.id)+" Position:"+str(self.pos)
+        return "Node ID:"+str(self.id)
